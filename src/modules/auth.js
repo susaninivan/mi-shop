@@ -1,4 +1,5 @@
 import { openModal, closeModal } from "./modal";
+import { getData } from "./api";
 
 export const authFunc = function () {
   const auchBtn = document.getElementById("open-auth-btn");
@@ -89,9 +90,21 @@ export const authFunc = function () {
       password: passwordInput.value,
     };
 
-    localStorage.setItem("auth", JSON.stringify(user));
+    getData(' http://localhost:3001/profile').then(function (data) {
+      console.log(data)
+      if ((data.login && data.login === user.login) && (data.password && data.password === user.password)) {
+        // console.log('Успех')
+        localStorage.setItem("auth", JSON.stringify(data))
+        login();
+      }
+      else {
+        alert('Ошибка')
+      }
+    })
 
-    login();
+    // localStorage.setItem("auth", JSON.stringify(user));
+
+  
   });
 
   logoutBtn.addEventListener("click", function () {

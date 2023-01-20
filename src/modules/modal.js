@@ -21,13 +21,13 @@ export const openModal = function (modal) {
 export const closeModal = function (modal) {
   
   const layout = document.querySelector('.modal-backdrop')
-  layout.classList.remove('show')
+  layout && layout.classList.remove('show')
   
 modal.classList.remove("show");
 
 setTimeout(function () {
     modal.classList.remove("d-block");
-    layout.remove()
+    layout && layout.remove()
   }, 500);
 
   // modal.style.display = "none"
