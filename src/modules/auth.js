@@ -36,9 +36,30 @@ export const authFunc = function () {
   };
 
   const checkAuth = function () {
-    if (JSON.parse(localStorage.getItem("auth"))) {
-      login();
+    const user = JSON.parse(localStorage.getItem("auth"))
+
+    if (user) {
+
+      getData('/profile').then(function (data) {
+        // console.log(data)
+        if ((data.login && data.login === user.login) && (data.password && data.password === user.password)) {
+          // console.log('Успех')
+          // localStorage.setItem("auth", JSON.stringify(data))
+          login();
+        }
+        else {
+          alert('Ви ввели не верние данние')
+        }
+      })
+
     }
+    else {
+
+    }
+
+    // if (JSON.parse(localStorage.getItem("auth"))) {
+    //   login();
+    // }
   };
 
   //   const openModal = function () {
@@ -90,15 +111,15 @@ export const authFunc = function () {
       password: passwordInput.value,
     };
 
-    getData(' http://localhost:3001/profile').then(function (data) {
-      console.log(data)
+    getData('/profile').then(function (data) {
+      // console.log(data)
       if ((data.login && data.login === user.login) && (data.password && data.password === user.password)) {
         // console.log('Успех')
         localStorage.setItem("auth", JSON.stringify(data))
         login();
       }
       else {
-        alert('Ошибка')
+        alert('Ви ввели не верние данние')
       }
     })
 
