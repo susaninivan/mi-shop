@@ -1,8 +1,25 @@
 {
-  "profile": {
-    "login": "ivan",
-    "password": "12345"
-  }
+  "profile": 
+    {
+      "login": "ivan",
+      "password": "12345"
+    },
   
-
+  "categories": [
+    {
+      "id": 0,
+      "name": "Смартфоны",
+      "preview": "/images/phones/preview.jpg"
+    },
+    {
+      "id": 1,
+      "name": "Аксессуары",
+      "preview": "/images/accessory/preview.jpg"
+    },
+    {
+      "id": 0,
+      "name": "Умные устройства",
+      "preview": "/images/usage/preview.jpg"
+    }
+  ]
 }
