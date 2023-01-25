@@ -133,9 +133,7 @@ export const authFunc = function () {
     logout();
   });
 
-  openCartBtn.addEventListener("click", function () {
-    openModal(cardModal);
-  });
+  
 
   checkAuth();
 };
