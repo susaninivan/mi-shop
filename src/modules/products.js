@@ -33,22 +33,24 @@ export const productsFunc = function () {
             `)
         });
     }
-        const init = function () {
+    const init = function () {
 
-            const params = window.location.search
-const urlSearchParams = new URLSearchParams(params)
-            // console.log(window.location.search)
-            console.log(urlSearchParams.get('id'))
+        const params = window.location.search
+        const urlSearchParams = new URLSearchParams(params)
+        const id = urlSearchParams.get('id')
+        const url = id ? `/products?category=${id}` : `/products`
+        // console.log(window.location.search)
+        console.log(urlSearchParams.get('id'))
 
-            getData("/products")
+        getData(url)
 
-                .then(function (data) {
-                    render(data)
-                })
-                .catch(function (error) {
-                    // console.error("Произошла Ошибка")
-                })
-        }
-        init();
-    
+            .then(function (data) {
+                render(data)
+            })
+            .catch(function (error) {
+                // console.error("Произошла Ошибка")
+            })
+    }
+    init();
+
 }
