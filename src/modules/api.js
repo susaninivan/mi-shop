@@ -22,9 +22,15 @@ export const getData = function (patch) {
 //         return response.json()})
 // }
 
-export const postData = function (patch, data) {
+export const postData = function (path, data) {
 
-    return fetch(apiPatch + patch, data).then(function (response) {
+    return fetch(apiPatch + path, {
+        method: "POST",
+        body: JSON.stringify(data),
+        headers: {
+            "Content-Type": "application/json"
+        }
+    }).then(function (response) {
 
         if (response.ok === false) {
             throw new Error('Ошибка...')
@@ -35,6 +41,49 @@ export const postData = function (patch, data) {
     })
 
 }
+
+export const putData = function (path, data) {
+
+    return fetch(apiPatch + path, {
+        method: "PUT",
+        body: JSON.stringify(data),
+        headers: {
+            "Content-Type": "application/json"
+        }
+    }).then(function (response) {
+
+        if (response.ok === false) {
+            throw new Error('Ошибка...')
+        }
+
+        // console.log(response)
+        return response.json()
+    })
+
+}
+
+export const patchData = function (path, data) {
+
+    return fetch(apiPatch + path, {
+        method: "PATCH",
+        body: JSON.stringify(data),
+        headers: {
+            "Content-Type": "application/json"
+        }
+    }).then(function (response) {
+
+        if (response.ok === false) {
+            throw new Error('Ошибка...')
+        }
+
+        // console.log(response)
+        return response.json()
+    })
+
+}
+
+
+
 
 export const deleteData = function (path) {
 

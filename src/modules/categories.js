@@ -10,7 +10,11 @@ export const categoriesFunc = function () {
     // } )
     const container = document.getElementById('categories-container')
 
+    const catalogSearch = document.querySelector('.catalog-search')
+
     const render = function (data) {
+
+        container.innerHTML = ''
         data.forEach(function (item) {
             container.insertAdjacentHTML('beforeend', `
                         <div class="col col-12 col-md-6 col-lg-4 mb-3">
@@ -28,6 +32,19 @@ export const categoriesFunc = function () {
             `)
         });
     }
+    catalogSearch.addEventListener("input" , function(event) {
+        console.log(event.target.value)
+        getData(`/categories?q=${event.target.value}`)
+
+        .then(function (data) {
+            render(data)
+        })
+        .catch(function (error) {
+            // console.error("Произошла Ошибка")
+        })
+    })
+
+
 
     getData("/categories")
 
